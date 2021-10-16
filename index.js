@@ -36,7 +36,10 @@ const main = async () => {
 
   const results = await page.evaluate(() => {
     const results = []
-    document.querySelector('.primary-Gbtn.large-Btn').click()
+    const bigButtons = document.querySelectorAll('.primary-Gbtn.large-Btn')
+    if (bigButtons.length > 1) {
+      bigButtons[0].click()
+    }
     const items = document.querySelectorAll('.top-Listse')
 
     items.forEach((item) => {
@@ -56,7 +59,9 @@ const main = async () => {
   let shouldSendMessage = false
   results.forEach((item) => {
     if (!resultsLastTime.includes(item)) {
-      message += `<b><i>${item}</i></b>${doneOnes.find((str) => str.includes(item)) ? '' : '!'}\n`
+      message += `<b><i>${item}</i></b>${
+        doneOnes.find((doneStr) => item.includes(doneStr)) ? '' : '!'
+      }\n`
       shouldSendMessage = true
     } else {
       message += item + '\n'
@@ -77,7 +82,5 @@ const main = async () => {
   await browser.close()
   return
 }
-
-main()
 
 module.exports.main = main
