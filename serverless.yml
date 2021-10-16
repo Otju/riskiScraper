@@ -1,0 +1,21 @@
+org: otjuso
+app: riskivapaa-bot
+service: riskivapaa-bot
+
+plugins:
+  - serverless-offline
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-central-1
+  lambdaHashingVersion: 20201221
+
+functions:
+  scraper:
+    handler: handler.run
+    events:
+      # Invoke Lambda function every minute
+      - schedule: rate(3 minutes)
