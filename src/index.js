@@ -80,7 +80,7 @@ const main = async () => {
     db.insertMany(results.map((item) => ({ name: item })))
   }
   await browser.close()
-  return
+  await client.close()
 }
 
 module.exports.main = main
