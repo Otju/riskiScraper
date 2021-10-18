@@ -83,6 +83,4 @@ const main = async () => {
   return
 }
 
-main()
-
 module.exports.main = main
