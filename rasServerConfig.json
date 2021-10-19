@@ -1,5 +1,5 @@
 {
-  "onfirstTimeInit": ["npm install"],
-  "onUpdate": ["npm install"],
-  "onRun": ["node src/run.js"]
+  "onfirstTimeInit": "npm install",
+  "onUpdate": "npm install",
+  "onRun": "node src/run.js"
 }
