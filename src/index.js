@@ -1,5 +1,5 @@
 require('dotenv').config()
-const chromium = require('chrome-aws-lambda')
+const puppeteer = require('puppeteer')
 const TelegramBot = require('node-telegram-bot-api')
 const { MongoClient } = require('mongodb')
 
@@ -24,12 +24,10 @@ const main = async () => {
     'Pelataan',
   ]
 
-  browser = await chromium.puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath,
-    headless: chromium.headless,
-    ignoreHTTPSErrors: true,
+  browser = await puppeteer.launch({
+	  headless: true,
+          executablePath: '/usr/bin/chromium-browser',
+          args: ['--no-sandbox', '--disable-setuid-sandbox']
   })
   const page = await browser.newPage()
   await page.goto(pageLink, { timeout: 0 })
